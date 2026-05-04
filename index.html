@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="ru"><head><link rel="stylesheet" href="/photo-crop-app.aa436662.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приложение для обрезки фото</title>
+    <link rel="stylesheet" href="/photo-crop-app.4d663569.css">
+    <script defer="" type="module" src="/photo-crop-app.34df32e0.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Вы можете обрезать любое фото и загрузить его</h1>
+        <input type="file" id="uploadInput" accept="image/*">
+        <div id="originalImageContainer" class="image-container hidden">
+            <img id="originalImage" alt="Загруженное изображение">
+        </div>
+        <button id="cropButton" class="btn-trim" disabled="">Обрезать</button>
+        <div id="croppedImageContainer" class="image-container hidden">
+            <img id="croppedImage" alt="Обрезанное изображение">
+        </div>
+        <button id="downloadButton" class="btn-save-result" disabled="">Сохранить</button>
+    </div>
+
+
+</body></html>

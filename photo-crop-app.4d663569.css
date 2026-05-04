@@ -1,0 +1,359 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+}
+
+.container {
+  background: #fff;
+  border-radius: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  animation: .5s ease-out fadeIn;
+  box-shadow: 0 20px 60px #0000004d;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) text;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+input[type="file"] {
+  cursor: pointer;
+  background: #f9f9f9;
+  border: 2px dashed #ddd;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 30px;
+  padding: 12px;
+  transition: all .3s;
+  display: block;
+}
+
+input[type="file"]:hover {
+  background: #f0f0ff;
+  border-color: #667eea;
+}
+
+.image-container {
+  background: #f8f9fa;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  margin: 20px 0;
+  padding: 20px;
+  display: flex;
+  position: relative;
+  box-shadow: 0 2px 10px #0000000d;
+}
+
+.image-container.hidden {
+  display: none !important;
+}
+
+.image-container:before {
+  content: "📷";
+  opacity: .2;
+  pointer-events: none;
+  font-size: 48px;
+  position: absolute;
+}
+
+.image-container:first-of-type:after {
+  content: "Оригинальное изображение";
+  color: #666;
+  background: #ffffffe6;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+}
+
+.image-container:last-of-type:after {
+  content: "Обрезанное изображение";
+  color: #666;
+  background: #ffffffe6;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+}
+
+button {
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 50px;
+  margin: 10px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all .3s;
+  box-shadow: 0 2px 5px #0000001a;
+}
+
+.btn-trim {
+  color: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.btn-trim:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px #667eea66;
+}
+
+.btn-trim:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-save-result {
+  color: #fff;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.btn-save-result:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px #f5576c66;
+}
+
+.btn-save-result:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.container > div:has(button) {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (width <= 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .image-container {
+    min-height: 200px;
+    padding: 15px;
+  }
+
+  .image-container img {
+    max-height: 250px;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+.image-container:has(img[src=""]):before {
+  animation: 1.5s ease-in-out infinite pulse;
+}
+
+.cropper-view-box, .cropper-face {
+  border-radius: 0;
+}
+
+.cropper-line, .cropper-point {
+  background-color: #667eea;
+}
+
+.cropper-dashed {
+  opacity: .5;
+  border-color: #fff;
+}
+
+.error-message {
+  color: #fff;
+  text-align: center;
+  background: #f44336;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 10px;
+  animation: .3s ease-out slideIn;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-message {
+  color: #fff;
+  text-align: center;
+  background: #4caf50;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 10px;
+  animation: .3s ease-out slideIn;
+}
+
+.separator {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.separator:before, .separator:after {
+  content: "";
+  background: linear-gradient(90deg, #0000, #ddd, #0000);
+  width: 45%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+}
+
+.separator:before {
+  left: 0;
+}
+
+.separator:after {
+  right: 0;
+}
+
+.separator span {
+  color: #999;
+  background: #fff;
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.image-container {
+  background: #f8f9fa;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  margin: 20px 0;
+  padding: 20px;
+  transition: all .3s;
+  display: flex;
+  position: relative;
+  box-shadow: 0 2px 10px #0000000d;
+}
+
+.image-container:not(.hidden) {
+  animation: .4s ease-out slideUp;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.image-container.empty:before {
+  content: "📷 Изображение не загружено";
+  color: #999;
+  text-align: center;
+  pointer-events: none;
+  font-size: 16px;
+  position: absolute;
+}
+
+.image-container:has(img:not([src=""]):not([src="#"])):before {
+  content: "";
+}
+
+.image-container img {
+  object-fit: contain;
+  z-index: 1;
+  border-radius: 10px;
+  max-width: 100%;
+  max-height: 400px;
+  position: relative;
+  box-shadow: 0 5px 20px #0000001a;
+}
+
+.image-container:after {
+  color: #666;
+  z-index: 2;
+  background: #ffffffe6;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+}
+
+#originalImageContainer:after {
+  content: "Оригинальное изображение";
+}
+
+#croppedImageContainer:after {
+  content: "Обрезанное изображение";
+}
+/*# sourceMappingURL=photo-crop-app.4d663569.css.map */
